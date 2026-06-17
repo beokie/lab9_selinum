@@ -1,224 +1,115 @@
-# 🤖 Kiểm Thử Tự Động với Selenium
+# Selenium Testing Assignment
 
-> **Môn học:** Kiểm thử phần mềm  
-> **Sinh viên:** [Họ và tên của bạn]  
-> **MSSV:** [Mã số sinh viên]  
-> **Nhóm:** Nhóm 6 – COUR01.LT2  
-> **Trường:** Đại học Phenikaa  
+## 1. Thông tin sinh viên
 
----
-
-## 📌 Mục tiêu
-
-- Học cách sử dụng **Selenium WebDriver** để kiểm thử tự động
-- Xây dựng 3 test case tự động cho website thực tế
-- Chạy và xác nhận kết quả kiểm thử
+* Họ tên: Dương Trung Kiên
+* MSSV: 22010037
 
 ---
 
-## 🌐 Website được kiểm thử
+## 2. Mục tiêu
 
-**DemoQA** – `https://demoqa.com`
+Tìm hiểu công cụ kiểm thử tự động Selenium và xây dựng các test case kiểm thử website.
 
-DemoQA là website thực hành kiểm thử tự động, cung cấp các thành phần UI phổ biến như form, bảng, checkbox, dialog... Rất phù hợp để học Selenium.
+Website được chọn:
 
----
+https://demoqa.com
 
-## ⚙️ Cài đặt môi trường
+Ngôn ngữ sử dụng:
 
-### Yêu cầu
-- Python 3.8+
-- Google Chrome (phiên bản mới nhất)
-- ChromeDriver (tương ứng với phiên bản Chrome)
-
-### Bước 1: Cài đặt Python
-Tải tại [https://www.python.org/downloads/](https://www.python.org/downloads/)  
-Kiểm tra: mở CMD → `python --version`
-
-### Bước 2: Cài đặt thư viện Selenium
-```bash
-pip install selenium
-pip install webdriver-manager
-```
-
-### Bước 3: Cài ChromeDriver tự động (khuyên dùng)
-Thêm vào đầu file Python:
-```python
-from selenium import webdriver
-from selenium.webdriver.chrome.service import Service
-from webdriver_manager.chrome import ChromeDriverManager
-
-driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()))
-```
-
-### Bước 4: Chạy test
-```bash
-python -m pytest test_selenium.py -v
-# hoặc
-python test_selenium.py
-```
+* Python
+* Selenium WebDriver
+* Pytest
 
 ---
 
-## 📋 Các Test Case Thực Hiện
+## 3. Cài đặt môi trường
 
----
-
-### Test Case 1 – Kiểm thử điền Form (Text Box)
-
-| Thông tin | Chi tiết |
-|-----------|---------|
-| **Mã TC** | TC1 |
-| **Tên** | Kiểm thử điền thông tin vào Text Box Form |
-| **URL** | `https://demoqa.com/text-box` |
-| **Mục tiêu** | Xác nhận form nhận đúng dữ liệu và hiển thị kết quả |
-
-**Các bước thực hiện:**
-1. Mở trình duyệt, truy cập `https://demoqa.com/text-box`
-2. Nhập **Full Name:** `Nguyen Van A`
-3. Nhập **Email:** `nguyenvana@phenikaa.edu.vn`
-4. Nhập **Current Address:** `Ha Noi, Viet Nam`
-5. Nhập **Permanent Address:** `Ho Chi Minh, Viet Nam`
-6. Click nút **Submit**
-7. Kiểm tra kết quả hiển thị bên dưới
-
-**Kết quả mong đợi:**
-- Phần output hiển thị đúng tên và email vừa nhập
-- Không có thông báo lỗi
-
-**Kết quả thực tế:** ✅ PASS
-
-**📸 Ảnh minh hoạ:**
-
-![TC1 - Text Box Form](./screenshots/tc1_textbox.png)
-
----
-
-### Test Case 2 – Kiểm thử Check Box
-
-| Thông tin | Chi tiết |
-|-----------|---------|
-| **Mã TC** | TC2 |
-| **Tên** | Kiểm thử chức năng tích chọn Check Box |
-| **URL** | `https://demoqa.com/checkbox` |
-| **Mục tiêu** | Xác nhận việc chọn checkbox cập nhật đúng kết quả |
-
-**Các bước thực hiện:**
-1. Mở trình duyệt, truy cập `https://demoqa.com/checkbox`
-2. Click nút **Expand All** (mở rộng toàn bộ cây thư mục)
-3. Tích chọn checkbox **"Documents"**
-4. Kiểm tra phần kết quả bên dưới
-
-**Kết quả mong đợi:**
-- Phần kết quả hiển thị: `You have selected: documents`
-- Các mục con của Documents cũng được chọn theo
-
-**Kết quả thực tế:** ✅ PASS
-
-**📸 Ảnh minh hoạ:**
-
-![TC2 - Check Box](./screenshots/tc2_checkbox.png)
-
----
-
-### Test Case 3 – Kiểm thử Web Tables (Thêm bản ghi)
-
-| Thông tin | Chi tiết |
-|-----------|---------|
-| **Mã TC** | TC3 |
-| **Tên** | Kiểm thử thêm bản ghi mới vào bảng dữ liệu |
-| **URL** | `https://demoqa.com/webtables` |
-| **Mục tiêu** | Xác nhận thêm dữ liệu mới hiển thị đúng trong bảng |
-
-**Các bước thực hiện:**
-1. Mở trình duyệt, truy cập `https://demoqa.com/webtables`
-2. Click nút **"Add"**
-3. Điền thông tin vào form:
-   - First Name: `Tran`
-   - Last Name: `Thi B`
-   - Email: `tranthib@test.com`
-   - Age: `22`
-   - Salary: `5000`
-   - Department: `QA Testing`
-4. Click nút **Submit**
-5. Kiểm tra bảng hiển thị bản ghi mới
-
-**Kết quả mong đợi:**
-- Bảng xuất hiện hàng mới với tên `Tran Thi B`
-- Cột Department hiển thị `QA Testing`
-
-**Kết quả thực tế:** ✅ PASS
-
-**📸 Ảnh minh hoạ:**
-
-![TC3 - Web Tables](./screenshots/tc3_webtables.png)
-
----
-
-## 📊 Tổng Hợp Kết Quả
-
-| STT | Mã TC | Tên Test Case | Kết quả mong đợi | Kết quả thực tế | Trạng thái |
-|-----|-------|---------------|------------------|-----------------|------------|
-| 1 | TC1 | Điền Text Box Form | Hiển thị đúng dữ liệu nhập | Hiển thị đúng | ✅ PASS |
-| 2 | TC2 | Tích chọn Check Box | Kết quả cập nhật đúng | Cập nhật đúng | ✅ PASS |
-| 3 | TC3 | Thêm bản ghi Web Table | Bản ghi mới xuất hiện | Xuất hiện đúng | ✅ PASS |
-
-**📸 Ảnh kết quả chạy pytest:**
-
-![Kết quả pytest](./screenshots/pytest_result.png)
-
----
-
-## 📁 Cấu trúc Repository
-
-```
-selenium-testing/
-│
-├── README.md               # Báo cáo chính (file này)
-├── test_selenium.py        # File code Selenium
-├── requirements.txt        # Danh sách thư viện
-└── screenshots/
-    ├── tc1_textbox.png
-    ├── tc2_checkbox.png
-    ├── tc3_webtables.png
-    └── pytest_result.png
-```
-
-**File requirements.txt:**
-```
-selenium==4.18.1
-webdriver-manager==4.0.1
-pytest==8.0.0
-```
-
----
-
-## 🚀 Hướng Dẫn Chạy Lại
+Cài đặt thư viện:
 
 ```bash
-# 1. Clone repo
-git clone https://github.com/[username]/selenium-testing.git
-cd selenium-testing
-
-# 2. Cài thư viện
 pip install -r requirements.txt
+```
 
-# 3. Chạy toàn bộ test
+Chạy kiểm thử:
+
+```bash
 python -m pytest test_selenium.py -v
-
-# 4. Chạy 1 test cụ thể
-python -m pytest test_selenium.py::DemoQATests::test_TC1_text_box_form -v
 ```
 
 ---
 
-## 📚 Tài Liệu Tham Khảo
+## 4. Các Test Case
 
-- 📖 [Tài liệu chính thức Selenium](https://www.selenium.dev/documentation/)
-- 🌐 [DemoQA – Website thực hành](https://demoqa.com/)
-- 📘 [Selenium với Python](https://selenium-python.readthedocs.io/)
-- 🎬 [Video hướng dẫn Selenium](https://www.youtube.com/results?search_query=selenium+python+tutorial+tieng+viet)
+### TC1 – Text Box
+
+Mục tiêu:
+
+* Kiểm tra chức năng nhập dữ liệu biểu mẫu.
+
+Các bước:
+
+1. Truy cập Text Box.
+2. Nhập họ tên.
+3. Nhập email.
+4. Nhập địa chỉ.
+5. Nhấn Submit.
+6. Kiểm tra kết quả hiển thị.
+
+Kết quả mong đợi:
+
+* Dữ liệu hiển thị chính xác sau khi Submit.
 
 ---
 
-*Báo cáo được thực hiện bởi Nhóm 6 – COUR01.LT2 – Đại học Phenikaa*
+### TC2 – Check Box
+
+Mục tiêu:
+
+* Kiểm tra chức năng chọn Check Box.
+
+Các bước:
+
+1. Truy cập Check Box.
+2. Chọn Home.
+3. Kiểm tra vùng Result.
+
+Kết quả mong đợi:
+
+* Hệ thống hiển thị kết quả tương ứng với lựa chọn.
+
+---
+
+### TC3 – Web Tables
+
+Mục tiêu:
+
+* Kiểm tra chức năng thêm dữ liệu vào bảng.
+
+Các bước:
+
+1. Truy cập Web Tables.
+2. Chọn Add.
+3. Nhập thông tin nhân viên.
+4. Submit.
+
+Kết quả mong đợi:
+
+* Bản ghi mới xuất hiện trong bảng.
+
+---
+
+## 5. Kết quả thực hiện
+
+| Test Case | Trạng thái |
+| --------- | ---------- |
+| TC1       | PASS       |
+| TC2       | PASS       |
+| TC3       | PASS       |
+<img width="1797" height="907" alt="Screenshot 2026-06-17 174346" src="https://github.com/user-attachments/assets/fa73ce54-cba3-4399-8c12-71fe4fa64ffd" />
+
+
+
+## 6. Kết luận
+
+Selenium hỗ trợ tự động hóa thao tác trên trình duyệt hiệu quả. Qua bài thực hành đã xây dựng được ba test case cơ bản gồm nhập biểu mẫu, chọn checkbox và thao tác với bảng dữ liệu.
